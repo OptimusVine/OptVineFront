@@ -1,8 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-
 .color-green {
   background-color: palegreen;
-  flood-color: palegreen;
 }
 
 .color-red {
@@ -42,8 +39,3 @@ body {
   font-size:14px;
 }
 
-tr:nth-child(even) {
-    background-color: antiquewhite;
-}
-
-tr:hover {background-color: lightblue}

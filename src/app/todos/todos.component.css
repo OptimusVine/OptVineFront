@@ -1,0 +1,19 @@
+.lefty {
+    width: 50%;
+    font-family: Arial;
+    height: 250px;
+    float: left;
+}
+.righty {
+    width: 50%;
+    margin-left: 50%;
+    font-family: Arial;
+    height: 250px;
+    background-color: lightgray;
+    border: 1px; border-style: dashed; color: black;
+    border-radius: 7px;
+}
+.topbar {
+    float: left;
+    height: 30
+}

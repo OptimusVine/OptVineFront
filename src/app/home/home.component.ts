@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
     ngOnInit() { }
 
     gotoDetail(): void {
-        this.router.navigate(['/list'])
+        this.router.navigate(['/todos'])
+    }
+
+    gotoAdmin(): void {
+        this.router.navigate(['/admin'])
     }
 }

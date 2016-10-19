@@ -1,9 +1,27 @@
+
+
+.todos .assignee {
+  width: 10%
+}
+
+.todos .name {
+  width: 25%
+}
+
+.todos .due-date {
+  width: 15px
+}
+
+.status {
+  width: 10px
+}
+
 .selected {
     background-color: #CFD8DC !important;
     color: white;
   }
   .todos {
-    margin: 0 0 2em 0;
+
     list-style-type: none;
     padding: 0;
     width: 50em;
@@ -29,7 +47,6 @@
   }
   .todos .text {
     position: relative;
-    top: -3px;
   }
   .todos .badge {
     display: inline-block;
@@ -44,6 +61,7 @@
     height: 1.8em;
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
+    
   }
   button.delete {
   float:right;

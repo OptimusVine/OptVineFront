@@ -16,6 +16,25 @@ export class TodoService {
         })
     }
 
+    public pullIncomplete(){
+        return this.http.get(`http://localhost:5000/todos/Incomplete/pull`)
+             .map((res) =>{
+                 let json = res.json();
+                 console.log(json)
+                 return json;
+        })
+    }
+
+    public refreshIncomplete(){
+        return this.http.get(`http://localhost:5000/todos/Incomplete/refresh`)
+             .map((res) =>{
+                 let json = res.json();
+                 console.log(json)
+                 return json;
+        })
+    }
+
+
     public pullMyTodos(){
         return this.http.get(`http://localhost:5000/todos/pull/myTasks`)
              .map((res) =>{

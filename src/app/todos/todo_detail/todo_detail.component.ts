@@ -10,12 +10,16 @@ import { TodoService} from '../../services/todo.service'
 export class TodoDetailComponent implements OnInit {
 
     @Input() todo: Todo;
-
+    @Output() onMessage: EventEmitter<boolean> = new EventEmitter<boolean>();
     constructor(
         private todoService: TodoService
     ) { }
 
     ngOnInit() { 
+    }
+
+    public message(){
+        this.onMessage.emit(true)
     }
 
 }

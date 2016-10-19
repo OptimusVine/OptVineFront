@@ -1,25 +1,42 @@
 
-<div>TODOS</div>
+<table class="todos">
+    <tr>
+        <th class="assignee">Assignee</th>
+        <th class="name">Name</th>
+        <th class="due-date">Due Date</th>
+        <th class="status">Status</th>
+        <th class="wines">Project</th>
+    </tr>
 
-<div *ngIf="selectedTodo">
-    <todo-detail [todo]="selectedTodo"></todo-detail>
-</div>
+    <tr *ngFor="let todo of todos | orderBy : ['dateDue']" (click)="onSelect(todo)">
+        <td> 
+            <span *ngIf="todo.asana_assignee">{{todo.asana_assignee.name}}</span>
+            <span *ngIf="!todo.asana_assignee">Not Assigned</span> 
+        </td>
+        <td class="name">
+            {{todo.name}}
+        </td>
+        <td>
+             <span *ngIf="todo.dateDue">{{todo.dateDue | date: 'dd/MM/yyyy'}}</span>
+        </td>
+        <td>
+             <span [ngClass]="{'color-green': todo.complete}" >{{todo.complete}}</span>
+        </td>
+        <td>
+             <span *ngIf="todo.projects[0]" >{{todo.projects[0].name}}</span>
+        </td>
+    </tr>
+</table>
 
-<div ><button (click)="showMine()">
-        <span *ngIf="showingMine">HIDE</span>
-        <span *ngIf="!showingMine" >SHOW</span>
 
-      </button>  </div>
-
-<ul class="todos" *ngIf="myTodos">
-    <li *ngFor="let todo of myTodos | filter:filterargs" 
+<ul class="todos" *ngIf="todos">
+    <li *ngFor="let todo of todos" 
     [class.selected]="todo === selectedTodo"
     (click)="onSelect(todo)">
-        <div *ngIf="!showingMine || todo.asana_assignee && todo.asana_assignee.id === me">
         <span *ngIf="todo.asana_assignee" class="badge">{{todo.asana_assignee.name}} : </span> 
         <span *ngIf="!todo.asana_assignee" class="badge">Not Assigned : </span> 
         {{todo.name}} 
         <span *ngIf="todo.dateDue"> is due : {{todo.dateDue | date: 'dd/MM/yyyy'}}</span>
-        </div>
     </li>
 </ul>
+

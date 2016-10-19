@@ -1,0 +1,6 @@
+<div>
+<select class="form-control" [(ngModel)]="selectedUser" (ngModelChange)="selectUser()" >
+    <option> - Please Select One - </option>
+    <option *ngFor="let user of users" [ngValue]="user" >{{user.name.full}}</option>
+</select>
+</div>

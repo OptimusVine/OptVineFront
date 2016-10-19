@@ -1,0 +1,29 @@
+
+
+<div *ngIf="selectedTodo">
+    <div class="lefty">
+    <todo-detail [todo]="selectedTodo"   ></todo-detail>
+    </div>
+    <div class="righty">
+        <communication [todo]="selectedTodo" > </communication>
+        
+    </div>
+</div>
+
+<div><button (click)="filterSwitch()">FILTER</button></div>
+<div *ngIf="filter">
+    <div class="topbar"><button (click)="showMine()" [ngClass]="{'color-green': showingMine, 'color-red': !showingMine}">
+        ONLY MINE
+    </button></div>
+    <div><button (click)="filterComplete()" [ngClass]="{'color-green': showingIncomplete, 'color-red': !showingIncomplete}"> INCOMPLETE</button></div>
+</div>
+
+
+
+<div *ngIf="filter">
+<todo-list [todos]="myTodos | filter:filterargs" (selectTodo)="onSelect($event)"></todo-list>
+</div>
+
+<div *ngIf="!filter">
+<todo-list [todos]="myTodos" (selectTodo)="onSelect($event)"></todo-list>
+</div>

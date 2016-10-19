@@ -5,14 +5,21 @@ import { HttpModule } from '@angular/http';
 import './rxjs-extensions'
 
 import { AppComponent } from './app.component';
+import { AdminComponent } from './admin/admin.component'
+import { CommunicationComponent } from './communication/communication.component'
 import {  poopComponent } from './poop/poop.component'
 import {  TodoDetailComponent } from './todos/todo_detail/todo_detail.component'
 import { TodoListComponent } from './todos/todo_list.component'
 import { HomeComponent } from './home/home.component'
-import { TodoFilterPipe } from './pipes/todo-filter.pipe'
+import { TodosComponent } from './todos/todos.component'
+import { UserDropdownComponent } from './users/user_dropdown.component'
 
+import { TodoFilterPipe } from './pipes/todo-filter.pipe'
+import { OrderByPipe } from './pipes/orderBy.pipe'
 
 import { AddressService } from './services/address.service'
+import { MessageService } from './services/message.service'
+import { PeopleService } from './services/people.service'
 import { TodoService } from './services/todo.service'
 
 import { AppRoutingModule } from './routings/app_routing.module'
@@ -26,13 +33,19 @@ import { AppRoutingModule } from './routings/app_routing.module'
   ],
   declarations: [
     AppComponent,
+    AdminComponent,
+    CommunicationComponent,
     poopComponent,
+    TodosComponent,
     TodoListComponent,
     TodoDetailComponent,
     HomeComponent,
-    TodoFilterPipe
+    UserDropdownComponent,
+    // PIPES
+    TodoFilterPipe,
+    OrderByPipe
   ],
-  providers: [AddressService, TodoService],
+  providers: [AddressService, MessageService, PeopleService, TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

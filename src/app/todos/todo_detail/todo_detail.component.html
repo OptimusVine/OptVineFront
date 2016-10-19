@@ -1,13 +1,9 @@
 
   <div *ngIf="todo">
-    <h2>{{todo.name}} details!</h2>
+    <h4>{{todo.name}} details!</h4>
     <div *ngIf=true><label>_id: </label>{{todo._id}}</div>
     <div><label>Id: </label>{{todo.asana_id}}</div>
-    <div *ngIf="todo.asana_assignee"><label>Assignee:</label>{{todo.asana_assignee.name}} <br>
-      {{todo.asana_assignee.id}}
-    </div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="todo.name" placeholder="name"/>
-    </div>    
+    <div *ngIf="todo.asana_assignee"><label>Assignee:</label>{{todo.asana_assignee.name}}</div>
+    <div><label>Complete:</label>{{todo.complete}}</div>
+    <div *ngIf="todo.projects[0]"><label>Project:</label>{{todo.projects[0].name}}</div>
   </div>

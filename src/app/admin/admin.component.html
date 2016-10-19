@@ -1,0 +1,12 @@
+<ul> <a routerLink="/todos" routerLinkActive="active">TODOS</a>
+    <li>    
+        <button (click)="pullIncompleteTodos()" >PULL INCOMPLETE</button> <== Pulls All incomplete tasks from 3 projects (SM, PA, FromScratch)
+        <div *ngIf="pulledIncomplete && myTodos">This is complete: {{myTodos[0] | json}}</div>
+    </li>
+
+    <li>    
+        <button (click)="refreshIncompleteTodos()" >REFRESH INCOMPLETE</button> <== REFRESH All incomplete tasks from 3 projects (SM, PA, FromScratch)
+        <div *ngIf="refreshedIncomplete && myTodos">This is complete: {{myTodos[0] | json }}</div>
+    </li>
+</ul>
+
