@@ -27,6 +27,11 @@ export class TodosComponent implements OnInit {
         this.filter = !this.filter
     }
 
+    completeTodo(y: boolean): void {
+        console.log("Attempting to complete")
+        this.todoService.completeTodo(this.selectedTodo._id).subscribe(todo => this.selectedTodo = todo)
+    }
+
     showMine(): void {
         if('asana_assignee' in this.filterargs){
             delete this.filterargs.asana_assignee

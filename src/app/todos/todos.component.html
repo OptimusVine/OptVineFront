@@ -2,10 +2,10 @@
 
 <div *ngIf="selectedTodo">
     <div class="lefty">
-    <todo-detail [todo]="selectedTodo"   ></todo-detail>
+    <todo-detail [todo]="selectedTodo"  (markComplete)="completeTodo($event)" ></todo-detail>
     </div>
     <div class="righty">
-        <communication [todo]="selectedTodo" > </communication>
+        <communication [todo]="selectedTodo"> </communication>
         
     </div>
 </div>

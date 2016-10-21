@@ -17,6 +17,16 @@ export class PeopleService {
                         .map(this.extractData)
                         .catch(this.handleError);
     }
+
+    public getPeopleWithAsana(){
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      
+      let peopleUrl = `http://localhost:5000/people/withAsana`
+       return this.http.get(peopleUrl)
+                        .map(this.extractData)
+                        .catch(this.handleError);
+    }
                     
 
 private handleError (error: any) {
@@ -27,7 +37,6 @@ private handleError (error: any) {
   console.error(errMsg); // log to console instead
   return Promise.reject(errMsg);
 }
-
 
 
 

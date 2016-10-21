@@ -7,8 +7,8 @@ import './rxjs-extensions'
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component'
 import { CommunicationComponent } from './communication/communication.component'
-import {  poopComponent } from './poop/poop.component'
-import {  TodoDetailComponent } from './todos/todo_detail/todo_detail.component'
+import { poopComponent } from './poop/poop.component'
+import { TodoDetailComponent } from './todos/todo_detail/todo_detail.component'
 import { TodoListComponent } from './todos/todo_list.component'
 import { HomeComponent } from './home/home.component'
 import { TodosComponent } from './todos/todos.component'
@@ -21,6 +21,7 @@ import { AddressService } from './services/address.service'
 import { MessageService } from './services/message.service'
 import { PeopleService } from './services/people.service'
 import { TodoService } from './services/todo.service'
+import { WineService } from './services/wine.service'
 
 import { AppRoutingModule } from './routings/app_routing.module'
 
@@ -45,7 +46,7 @@ import { AppRoutingModule } from './routings/app_routing.module'
     TodoFilterPipe,
     OrderByPipe
   ],
-  providers: [AddressService, MessageService, PeopleService, TodoService],
+  providers: [AddressService, MessageService, PeopleService, TodoService, WineService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

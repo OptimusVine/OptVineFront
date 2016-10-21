@@ -8,5 +8,19 @@
         <button (click)="refreshIncompleteTodos()" >REFRESH INCOMPLETE</button> <== REFRESH All incomplete tasks from 3 projects (SM, PA, FromScratch)
         <div *ngIf="refreshedIncomplete && myTodos">This is complete: {{myTodos[0] | json }}</div>
     </li>
+    <li>    
+        <button (click)="postTodo()" >POST TODO</button><input [(ngModel)]="message" /> <== POSTS new Todo with hardcoded values
+        <div *ngIf="postedTodo && newTodo">This is complete: {{newTodo | json }}</div>
+    </li>
+    <li>    
+        <button (click)="getPeopleWithAsana()" >GET ASANA PEOPLE</button>
+        <div *ngIf="pulledAsanaPeople && asanaPeople">This is complete: {{asanaPeople[0] | json }}</div>
+    </li>
+    <li>    
+        <button (click)="getWines()" >GET WINES</button>
+        <div *ngIf="gotWines && wines">This is complete: {{wines[0].description}} - 
+            {{wines[0].plmItem.metaFields.entry[3].key}} : 
+            {{wines[0].plmItem.metaFields.entry[3].fieldData.label}}</div>
+    </li>
 </ul>
 

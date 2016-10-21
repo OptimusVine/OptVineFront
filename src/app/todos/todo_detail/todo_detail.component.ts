@@ -11,6 +11,7 @@ export class TodoDetailComponent implements OnInit {
 
     @Input() todo: Todo;
     @Output() onMessage: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() markComplete: EventEmitter<boolean> = new EventEmitter<boolean>();
     constructor(
         private todoService: TodoService
     ) { }
@@ -20,6 +21,11 @@ export class TodoDetailComponent implements OnInit {
 
     public message(){
         this.onMessage.emit(true)
+    }
+
+    public completeTodo(){
+        console.log(this.todo._id)
+        this.markComplete.emit(true)
     }
 
 }
