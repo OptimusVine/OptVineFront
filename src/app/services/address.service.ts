@@ -10,6 +10,7 @@ export class AddressService {
     public getCityNameforZipCode(zipcode: String){
        return this.http.get(`https://api.zippopotam.us/us/${zipcode}`)
              .map((res) =>{
+                 console.log(res)
                  let json = res.json();
                  return json;
         })

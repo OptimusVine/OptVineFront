@@ -10,7 +10,7 @@ export class TodoService {
 
 
     public completeTodo(todo: string){
-        let completeUrl = `http://localhost:5000/todos/` + todo + `/complete`
+        let completeUrl = `http://optimusvine.herokuapp.com/todos` + todo + `/complete`
         console.log(completeUrl)
         return this.http.get(completeUrl)
                         .map(this.extractData)

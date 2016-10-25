@@ -26,6 +26,8 @@ export class AdminComponent implements OnInit {
     private asanaPeople: User[];
     private wines: Item[];
 
+    
+
 
     constructor(
        private peopleService: PeopleService,

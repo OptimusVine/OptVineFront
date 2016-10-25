@@ -6,13 +6,15 @@ import { TodoListComponent }      from '../todos/todo_list.component';
 import { TodoDetailComponent }  from '../todos/todo_detail/todo_detail.component';
 import { AdminComponent } from '../admin/admin.component'
 
+import { AuthGuard } from '../_guards/auth.guard'
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'admin', component: AdminComponent },
   { path: 'todos/detail', component: TodoDetailComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'todos', component: TodosComponent },
+  { path: 'todos', component: TodosComponent, canActivate: [AuthGuard] },
 
   { path: '**', component: HomeComponent }
 ];
