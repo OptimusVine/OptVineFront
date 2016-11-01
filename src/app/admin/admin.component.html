@@ -1,4 +1,8 @@
-<ul> <a routerLink="/todos" routerLinkActive="active">TODOS</a>
+<ul> <a routerLink="/todos" routerLinkActive="active">TODOS !</a>
+    <li>    
+        <button (click)="pullMyIncomplete()" >PULL MINE</button> <== Pulls All incomplete tasks of MINE
+        <div *ngIf="pulledMine && myTodos">This is complete: {{myTodos[0] | json}}</div>
+    </li>
     <li>    
         <button (click)="pullIncompleteTodos()" >PULL INCOMPLETE</button> <== Pulls All incomplete tasks from 3 projects (SM, PA, FromScratch)
         <div *ngIf="pulledIncomplete && myTodos">This is complete: {{myTodos[0] | json}}</div>
@@ -16,11 +20,28 @@
         <button (click)="getPeopleWithAsana()" >GET ASANA PEOPLE</button>
         <div *ngIf="pulledAsanaPeople && asanaPeople">This is complete: {{asanaPeople[0] | json }}</div>
     </li>
+    <br> <a routerLink="/wines" routerLinkActive="active">*** WINES *** !</a><br>
+    <wine-dropdown [wines]="_wines$" (select)="clickWine($event)"></wine-dropdown>
+    <span *ngIf="_wines$ && _wines$[0]">{{_wines$[0].description | json}} is the first object</span>
     <li>    
         <button (click)="getWines()" >GET WINES</button>
         <div *ngIf="gotWines && wines">This is complete: {{wines[0].description}} - 
             {{wines[0].plmItem.metaFields.entry[3].key}} : 
             {{wines[0].plmItem.metaFields.entry[3].fieldData.label}}</div>
+    </li>
+     <li>    
+        <button (click)="refreshWines()" >REFRESH WINES</button> <== PULL FROM PLM
+        <div *ngIf="refreshedWines && wines">This is complete: {{wines[0].description}}</div>
+    </li>
+        <li>    
+        <button (click)="getSourcings()" >GET SOURCINGS</button>
+        <div *ngIf="gotSourcings && sourcings">This is complete: {{sourcings[0].description}} - 
+            {{sourcings[0].plmItem.metaFields.entry[3].key}} : 
+            {{sourcings[0].plmItem.metaFields.entry[3].fieldData.label}}</div>
+    </li>
+    <li>    
+        <button (click)="refreshSourcings()" >REFRESH SOURCINGS</button> <== PULL FROM PLM
+        <div *ngIf="refreshedSourcings && sourcings">This is complete: {{sourcings[0].description}}</div>
     </li>
 </ul>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //  import { AuthenticationService } from '../services/auth.service'
 import { AddressService} from './services/address.service'
 import { TodoService} from './services/todo.service'
+import { WineService } from './services/wine.service'
 
 import { Todo } from './objects/todos' 
 
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
   constructor(
 // private authenticationService: AuthenticationService,
     private addressService: AddressService,
-    private todoService: TodoService
+    private todoService: TodoService,
+    private wineService: WineService
     ){
 
   }
@@ -29,20 +31,12 @@ export class AppComponent implements OnInit {
     }
 
   ngOnInit(){
+   this.wineService.loadAll()
+   this.todoService.loadAll()
    
-   
-    this.addressService.getCityNameforZipCode('90066').subscribe((data) => {
-      console.log(data)
-    })
-
-/*
-    this.getTodos();
-
-    this.todoService.getTodos().subscribe((data) => {
-      console.log(data)
-    })
-*/
-
+    // this.addressService.getCityNameforZipCode('90066').subscribe((data) => {
+    //   console.log(data)
+    // })
   }
 
   public poopFlushed(){

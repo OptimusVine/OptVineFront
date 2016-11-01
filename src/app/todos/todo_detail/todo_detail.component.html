@@ -6,5 +6,6 @@
     <div *ngIf="todo.asana_assignee"><label>Assignee:</label>{{todo.asana_assignee.name}}</div>
     <div><label>Complete:</label>{{todo.complete}}</div>
       <button (click)="completeTodo()"> MARK COMPLETE  </button>
+    <div *ngIf="todo.action"><label>Action Needed: </label>{{todo.action.description}}</div>
     <div *ngIf="todo.projects[0]"><label>Project:</label>{{todo.projects[0].name}}</div>
   </div>

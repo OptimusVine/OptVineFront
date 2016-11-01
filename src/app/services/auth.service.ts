@@ -20,7 +20,7 @@ export class AuthenticationService {
       let headers = new Headers({ 'Content-Type': 'application/json',
                                    'accept': "application/json" });
       
-    let postUrl = baseUrl + `login`
+    let postUrl = baseUrl + `/login`
 
     let reqOpt = new RequestOptions({
         headers: headers,

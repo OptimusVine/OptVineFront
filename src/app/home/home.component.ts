@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
     private email: string;
     private password: string;
+    private userSet: boolean
 
     constructor(
         private router: Router,
@@ -21,7 +22,17 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit() { 
+        this.loggedIn()
     }
+
+    loggedIn(): void{
+        if(localStorage.getItem('currentUser')){
+            this.userSet = true 
+        } else {
+            this.userSet = false
+        }
+    }
+    
 
     signup(): void {
       this.peopleService.signup(this.email, this.password).subscribe(res => this.auth = res)
@@ -33,6 +44,7 @@ export class HomeComponent implements OnInit {
 
     logout(): void {
       this.authenticationService.logout()
+      this.userSet = false
     }
 
     gotoDetail(): void {

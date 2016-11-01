@@ -6,10 +6,21 @@
 
 <div>
     <label><button  [ngClass]="{'color-green': include == true, 'color-red': include != true}"(click)="flipInclude()">Include Task</button></label>
-    <span *ngIf="include">{{todo.name}}<span *ngIf="todo.projects[0]"> + Link to Task</span></span>
+    <span *ngIf="include">
+        {{todo.name}}
+        <span *ngIf="todo.projects[0]"> + Link to Task</span>
+        <br>
+        <span *ngIf="wine">{{wine.description}}</span>
+    </span>
+    
 
 </div>
 
 <div><input [(ngModel)]="message" placeholder="name" /></div>
-<div ><label>To:</label><span *ngIf="target">{{ target.name.slack }}</span></div>
-<button *ngIf="target" (click)="sendMessage()"> SEND </button><user-dropdown [users]="users" (select)="setTarget($event)"></user-dropdown>
+<div>
+    <label>To:</label>
+    <span *ngIf="target">{{ target.name.slack }}</span>
+</div>
+<button *ngIf="target" (click)="sendMessage()"> SEND </button>
+    <user-dropdown [users]="users" (select)="setTarget($event)"></user-dropdown>
+    <wine-dropdown [wines]="wines" (select)="setWine($event)"></wine-dropdown>

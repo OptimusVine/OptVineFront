@@ -1,0 +1,25 @@
+WINE DETAIL COMPONENT
+
+Basic Wine Details:
+<div *ngIf="wine">
+    Description: {{wine.description}} <br>
+    Link: {{wine.uri}} <br>
+    Created: {{wine.plmItem.details?.timeStamp | date: 'MM/dd/yyyy'}} <br>
+    Last Modified: {{wine.plmItem.details?.lastModified | date: 'hh:mm MM/dd/yyyy' }} <br>
+    Workflow Step: {{wine.plmItem.details?.workflowState.stateName}}<br>
+    <button (click)="showFields()">See Fields</button>
+    
+<div *ngIf="wine">
+    {{wine.plmItem.relations?.entry | json }}
+<div>
+
+</div>
+
+<ul *ngIf="showingFields">
+    <li *ngFor="let item of wine?.plmItem.metaFields.entry">
+        {{item.key}} : 
+                <span *ngIf="item.fieldData.label">{{item.fieldData.label}}</span>
+                <span *ngIf="!item.fieldData.label">{{item.fieldData.value}}</span>
+    </li>
+</ul>
+

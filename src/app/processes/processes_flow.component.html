@@ -1,0 +1,25 @@
+<div *ngIf="processes">
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>State Name</th>
+            <th>Total Count</th>
+            <th>Child State</th>
+            <th>Child State</th>
+            <th>Child State</th>
+
+        </tr>
+        <tr *ngFor="let process of processes">
+            <td>{{process.type}}</td>
+            <td><button (click)="goToProcess(process)"> {{process.stateName}}</button></td>
+            <td>
+                <span *ngIf="process.children[0]">{{process.countChildren}}</span>
+                <span *ngIf="!process.children[0]">{{process.count}}</span>
+            </td>
+            <td *ngFor="let child of process.children">
+                <button (click)="goToProcess(child)"> {{child.stateName}}</button>
+                <span>[ {{child.count}} ]</span>
+            </td>
+        </tr>
+    </table>
+</div>

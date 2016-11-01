@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../objects/todos'
 import { User } from '../objects/users'
+import { Item } from '../objects/items'
 import { MessageService } from '../services/message.service'
 import { PeopleService } from '../services/people.service'
 
@@ -13,6 +14,7 @@ export class CommunicationComponent implements OnInit {
     public message: string
     public users: User[]
     public target: User
+    wine: Item
     public include: boolean
     public outbound: string
 
@@ -22,6 +24,9 @@ export class CommunicationComponent implements OnInit {
             if(this.todo.projects[0]){
                 let projectlink = "https://app.asana.com/0/" + this.todo.projects[0].id + "/" + this.todo.asana_id
                 this.outbound = this.outbound + " \n " + projectlink
+            }
+            if(this.wine){
+                this.outbound = this.outbound + "\n" + this.wine.description
             }
         } else {
             this.outbound = this.message
@@ -34,6 +39,7 @@ export class CommunicationComponent implements OnInit {
     }
 
     @Input() todo: Todo;
+    @Input() wines: Item[]
 
     constructor(
         private messageService: MessageService,
@@ -46,6 +52,10 @@ export class CommunicationComponent implements OnInit {
 
     setTarget(user: User){
         this.target = user
+    }
+
+    setWine(wine: Item): void {
+        this.wine = wine
     }
 
     flipInclude(): void {

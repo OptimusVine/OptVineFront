@@ -1,16 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions  } from '@angular/http'
+import { Observable, Subject } from 'rxjs';
 import '../rxjs-extensions'
 
+import { Todo} from '../objects/todos'
+
+import { baseUrl } from '../shared/config'
 
 @Injectable()
 export class TodoService {
+    private _todos$: Subject<Todo[]>;
+    private dataStore: {
+        todos: Todo[]
+    }
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) { 
+        this.dataStore = {todos: []}
+        this._todos$ = <Subject<Todo[]>>new Subject();
+    }
+
+    get todos$(){
+        return this._todos$.asObservable();
+    }
+
+    loadAll(){
+        this._todos$.next(this.dataStore.todos);
+        this.http.get(`${baseUrl}/todos`).map(response => response.json()).subscribe(data => {
+            this.dataStore.todos = data;
+            this._todos$.next(this.dataStore.todos);
+        }, error => console.log('Could not load todos.'));
+    }
 
 
     public completeTodo(todo: string){
-        let completeUrl = `http://optimusvine.herokuapp.com/todos` + todo + `/complete`
+        let completeUrl = `http://localhost:5000/todos/` + todo + `/complete`
         console.log(completeUrl)
         return this.http.get(completeUrl)
                         .map(this.extractData)
@@ -46,6 +69,12 @@ export class TodoService {
                  console.log(json)
                  return json;
         })
+    }
+
+    public pullMyIncomplete(){
+        return this.http.get(`${baseUrl}/todos/pull/myTasks`)
+                 .map(this.extractData)
+                 .catch(this.handleError);  
     }
 
     public refreshIncomplete(){

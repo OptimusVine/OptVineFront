@@ -9,11 +9,11 @@
 }
 
 .todos .due-date {
-  width: 15px
+  width: 8%
 }
 
 .status {
-  width: 10px
+  width: 8%
 }
 
 .selected {
@@ -69,14 +69,4 @@
   margin-right: .8em;
   background-color: gray !important;
   color:white;
-}
-
-button {
-  margin-top: 20px;
-  font-family: Arial;
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer; cursor: hand;
 }

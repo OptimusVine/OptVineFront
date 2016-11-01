@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { TodoService } from '../services/todo.service'
 import { PeopleService } from '../services/people.service'
+import { ProcessService } from '../services/process.service'
 import { WineService } from '../services/wine.service'
 
 import { Todo } from '../objects/todos'
@@ -21,27 +23,59 @@ export class AdminComponent implements OnInit {
     private postedTodo: boolean
     private pulledAsanaPeople: boolean
     private gotWines: boolean
+    private gotSourcings: boolean
+    private refreshedSourcings: boolean
+    private refreshedWines: boolean
     private message: string
+    private pulledMine: boolean
 
     private asanaPeople: User[];
-    private wines: Item[];
+    private wines: Item[]
+    private _wines$: Item[]
+    private sourcings: Item[];
 
     
 
 
     constructor(
        private peopleService: PeopleService,
+       private processService: ProcessService,
        private todoService: TodoService,
        private wineService: WineService
     ) { }
 
     ngOnInit() {
-        
+        this.wineService.wines$.subscribe(res => this._wines$ = res)
+        this.wineService.loadAll()
+    }
+
+    clickWine(wine: Item): void {
+        console.log(wine.description)
+    }
+
+    refreshSourcings(): void {
+        this.refreshedSourcings = true
+        this.wineService.refreshSourcings().subscribe(sourcings => this.sourcings = sourcings)
+    }
+
+    pullMyIncomplete(): void {
+        this.pulledMine = true
+        this.todoService.pullMyIncomplete().subscribe(res => this.myTodos = res)
+    }
+
+    refreshWines(): void {
+        this.refreshedWines = true
+        this.wineService.refreshWines().subscribe(wines => this.wines = wines)
     }
 
     getWines(): void {
         this.gotWines = true
-        this.wineService.getWines().subscribe(wines => this.wines = wines)
+        this.wineService.getWines()
+    }
+
+    getSourcings(): void {
+        this.gotSourcings = true
+        this.wineService.getSourcings().subscribe(sourcings => this.sourcings = sourcings)
     }
 
     getPeopleWithAsana(): void {

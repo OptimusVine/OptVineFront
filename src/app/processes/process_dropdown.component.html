@@ -1,0 +1,15 @@
+<div *ngIf="processes">
+<div *ngIf="processes[0].stateName">
+<select class="form-control" [(ngModel)]="selectedProcess" (ngModelChange)="selectProcess()" >
+    <option> - Please Select One - </option>
+    <option *ngFor="let process of processes" [ngValue]="process" >{{process.stateName}}</option>
+</select>
+</div>
+
+<div *ngIf="processes[0].action">
+<select class="form-control" [(ngModel)]="selectedProcess" (ngModelChange)="selectProcess()" >
+    <option> - Please Select One - </option>
+    <option *ngFor="let process of processes" [ngValue]="process" >{{process.action}}</option>
+</select>
+</div>
+</div>

@@ -11,7 +11,7 @@ export class AuthenticatedRequest extends BaseRequestOptions {
         if (!!options 
      //   && options.method !== RequestMethod.Options
         ) {
-            console.log('merge stuff because we can');
+        //    console.log('merge stuff because we can');
             if (localStorage.getItem('currentUser')) {
                 let token = JSON.parse(localStorage.getItem('currentUser')).token;
                 if (token) {

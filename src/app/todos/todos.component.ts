@@ -1,8 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../objects/todos'
-import { TodoService} from '../services/todo.service'
+import { Item } from '../objects/items'
+
 import { TodoFilterPipe } from '../pipes/todo-filter.pipe'
+
 import { MessageService } from '../services/message.service'
+import { TodoService} from '../services/todo.service'
+import { WineService } from '../services/wine.service'
 
 @Component({
     selector: 'todos',
@@ -10,18 +14,37 @@ import { MessageService } from '../services/message.service'
     styleUrls: ['todos.component.css'],
     providers: [TodoFilterPipe]
 })
-export class TodosComponent implements OnInit {
+export class TodosComponent {
     public myTodos: Todo[];
     public selectedTodo: Todo;
-    public showingMine: boolean = true
+    public showingMine: boolean = false
     public showingIncomplete: boolean = true
-    public filter: boolean = false
+    private _wines$: Item[]
+    private _todos$: Todo[]
+
+    public filter: boolean = true
     public me: number
     public filterargs = {
-                        complete: false  ,
                         asana_assignee: {id: 10363492364586, name: "Kjiel Carlson"},
+                        complete: false,
                         };
 
+    constructor(
+        private todoService: TodoService,
+        private todoFilterPipe: TodoFilterPipe,
+        private messageService: MessageService,
+        private wineService: WineService
+    ) { }
+
+    ngOnInit() {
+        console.log("onInit")
+        this.getTodos();
+        this.me = 10363492364586
+        this.wineService.wines$.subscribe(res => this._wines$ = res)
+        this.todoService.todos$.subscribe(res => this._todos$ = res)
+        this.wineService.loadAll()
+        this.todoService.loadAll()
+    }
 
     filterSwitch(): void {
         this.filter = !this.filter
@@ -60,17 +83,7 @@ export class TodosComponent implements OnInit {
 
     @Input() todos: Todo[];
 
-    constructor(
-        private todoService: TodoService,
-        private todoFilterPipe: TodoFilterPipe,
-        private messageService: MessageService,
-    ) { }
 
-    ngOnInit() {
-        this.getTodos();
-        this.me = 10363492364586
-
-    }
 
     onSelect(todo: Todo): void {
         this.selectedTodo = todo

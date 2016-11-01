@@ -1,13 +1,17 @@
-THIS IS THE HOME PAGE 
-<button (click)="logout()">LOG OUT NOW</button><br>
+THIS IS THE HOME PAGE <br>
+<button *ngIf="auth"  (click)="logout()">LOG OUT NOW</button><br>
 
-<span *ngIf="auth" >{{auth}}</span>
-<br>
+<button (click)="gotoAdmin()">Admin Panel</button><br>
 <button (click)="gotoDetail()">Todos</button>
-<button (click)="gotoAdmin()">Admin Panel</button>
+<a routerLink="/processes" routerLinkActive="active">
+   <br> <button>Processes</button>
+</a>
+<a routerLink="/wines" routerLinkActive="active">
+   <br> <button>Wines</button>
+</a>
 
 
-<div>
+<div *ngIf="!auth">
    EMAIL: {{email}} <br>
    PASSWORD: {{password}} <br>
     <input [(ngModel)]="email"  type="text" />

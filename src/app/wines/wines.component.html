@@ -1,0 +1,5 @@
+<processes-flow [processes]="_processes$" 
+   (q)="requestProcess($event)"></processes-flow>
+
+<wine-dropdown [wines]="_wines$" (select)="setWine($event)"></wine-dropdown>
+<wine-detail [wine]="selectedWine"></wine-detail>

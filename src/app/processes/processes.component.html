@@ -1,0 +1,50 @@
+PROCESSES
+
+<processes-flow [processes]="_processes$" (q)="requestProcess($event)" ></processes-flow>
+<br><br>WHAT TO DO?<process-dropdown [processes]="_options$" (select)="setOption($event)" ></process-dropdown><br>
+
+<div *ngIf="action === 'New'">
+
+    <div class="create">
+        Create a new process<br>
+        <label for="stateName">Process Name</label><input [(ngModel)]="create.stateName" placeholder="name" /><br>
+        <label for="description">description</label><input [(ngModel)]="create.description"  type="text"/><br>
+        <label for="type">Type</label><input [(ngModel)]="create.type"  type="text"/><br>
+        <div>
+        <label>NEW PROCESS:</label><br>
+
+        {{create?.stateName}} <br>
+        {{create?.description}} <br>
+        {{create?.type}}
+        </div>
+        <button (click)="createProcess()">Create Process</button>
+
+    </div>
+
+</div>
+
+
+<div *ngIf="action === 'Add Child'">
+<span *ngIf="selectedProcess">{{selectedProcess.stateName}}</span>
+<span *ngIf="stepOneProcess">{{stepOneProcess.stateName}}</span>
+<span *ngIf="stepTwoProcess">{{stepTwoProcess.stateName}}</span>
+{{action}}
+        <button (click)="handleAction()">Edit Process</button>
+<div>
+    What action are we taking?
+    Set an object "Action" to interact betwen Step1 and Step2
+        OR
+    
+</div>
+
+The Next Goal is to be able to add an option(s) for assigning : Before / Next / Same
+    Also need to be able to create a new process in the next we need to wrap
+
+
+MAIN<process-dropdown [processes]="_processes$" (select)="selectProcess($event)" ></process-dropdown>
+STEP ONE<process-dropdown [processes]="_processes$" (select)="selectStepOne($event)" ></process-dropdown>
+STEP TWO<process-dropdown [processes]="_processes$" (select)="selectStepTwo($event)" ></process-dropdown>
+</div>
+<br><br>
+{{_processes$ | json }}
+

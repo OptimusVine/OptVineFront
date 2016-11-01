@@ -1,11 +1,11 @@
 
-
+<span *ngIf="_wines$ && _wines$[0]">{{_wines$[0].description | json}} is the first object</span>
 <div *ngIf="selectedTodo">
     <div class="lefty">
     <todo-detail [todo]="selectedTodo"  (markComplete)="completeTodo($event)" ></todo-detail>
     </div>
     <div class="righty">
-        <communication [todo]="selectedTodo"> </communication>
+        <communication [todo]="selectedTodo" [wines]="_wines$" > </communication>
         
     </div>
 </div>
@@ -21,9 +21,9 @@
 
 
 <div *ngIf="filter">
-<todo-list [todos]="myTodos | filter:filterargs" (selectTodo)="onSelect($event)"></todo-list>
+<todo-list [todos]="_todos$ | filter:filterargs" (selectTodo)="onSelect($event)"></todo-list>
 </div>
 
 <div *ngIf="!filter">
-<todo-list [todos]="myTodos" (selectTodo)="onSelect($event)"></todo-list>
+<todo-list [todos]="_todos$" (selectTodo)="onSelect($event)"></todo-list>
 </div>
