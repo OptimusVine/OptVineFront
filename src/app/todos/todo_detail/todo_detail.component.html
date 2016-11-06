@@ -1,6 +1,7 @@
 
   <div *ngIf="todo">
     <h4>{{todo.name}} details!</h4>
+    <div *ngIf="todo.summary !='' " ><label>Summary: </label>{{todo.summary}}</div>
     <div *ngIf=true><label>_id: </label>{{todo._id}}</div>
     <div><label>Id: </label>{{todo.asana_id}}</div>
     <div *ngIf="todo.asana_assignee"><label>Assignee:</label>{{todo.asana_assignee.name}}</div>
@@ -8,4 +9,10 @@
       <button (click)="completeTodo()"> MARK COMPLETE  </button>
     <div *ngIf="todo.action"><label>Action Needed: </label>{{todo.action.description}}</div>
     <div *ngIf="todo.projects[0]"><label>Project:</label>{{todo.projects[0].name}}</div>
+    <div>
+      <button (click)="getStories()">GET STORIES</button><br>
+      <ul>
+        <li *ngFor="let comment of stories">{{comment.text}}</li>
+      </ul>
+    </div>
   </div>

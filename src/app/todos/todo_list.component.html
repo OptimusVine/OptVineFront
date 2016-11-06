@@ -25,11 +25,12 @@
         <td>
              <span *ngIf="todo.projects && todo.projects[0]">{{todo.projects[0].name}}</span>
         </td>
-        <td>     
+        <td><span *ngIf="todo.projects">     
             <span *ngIf="todo.projects[0]"><a target="_blank" 
                         href="https://app.asana.com/0/{{todo.projects[0].id}}/{{todo.asana_id}}"><button>GO</button></a></span>
             <span *ngIf="!todo.projects[0]"><a target="_blank" 
                         href="https://app.asana.com/0/3/{{todo.asana_id}}"><button>GO</button></a></span>        
-        </td>
+                
+        </span></td>
     </tr>
 </table>

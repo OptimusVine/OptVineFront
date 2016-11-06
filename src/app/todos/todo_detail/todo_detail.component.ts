@@ -9,6 +9,8 @@ import { TodoService} from '../../services/todo.service'
 })
 export class TodoDetailComponent implements OnInit {
 
+    private stories: any[]
+
     @Input() todo: Todo;
     @Output() onMessage: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() markComplete: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -22,6 +24,11 @@ export class TodoDetailComponent implements OnInit {
     public message(){
         this.onMessage.emit(true)
     }
+
+    public getStories(){
+        this.todoService.getStories(this.todo._id).subscribe(res => this.stories = res)
+    }
+    
 
     public completeTodo(){
         console.log(this.todo._id)

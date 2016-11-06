@@ -1,0 +1,4 @@
+<span>{{work | json }}</span>
+<div>
+    <todo-list [todos]="work.todos" (selectTodo)="onSelect($event)"></todo-list>
+</div>

@@ -62,6 +62,14 @@ export class TodoService {
         })
     }
 
+    public getStories(todo_id: any){
+       return this.http.get(`http://localhost:5000/todos/${todo_id}/stories`)
+             .map((res) =>{
+                 let json = res.json();
+                 return json;
+        })
+    }
+
     public pullIncomplete(){
         return this.http.get(`http://localhost:5000/todos/Incomplete/pull`)
              .map((res) =>{

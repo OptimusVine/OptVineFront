@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
 
 .color-green {
   background-color: palegreen;
@@ -7,6 +8,7 @@
 .color-red {
  background-color: palevioletred
 }
+
 
 label {
   display: inline-block;

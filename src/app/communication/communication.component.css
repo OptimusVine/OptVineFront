@@ -6,6 +6,11 @@
  background-color: palevioletred
 }
 
+.message {
+  height: 100px;
+  background-color: lightgray
+}
+
 label {
   display: inline-block;
   width: 10em;

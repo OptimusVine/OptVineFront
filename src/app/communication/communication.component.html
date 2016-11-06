@@ -1,11 +1,12 @@
-<div><label>Message:</label>{{message}}</div>
+<div class="message"><label>Message:</label>{{message}}</div>
 
 
 
 
 
 <div>
-    <label><button  [ngClass]="{'color-green': include == true, 'color-red': include != true}"(click)="flipInclude()">Include Task</button></label>
+    <label><button  [ngClass]="{'color-green': include == true, 'color-red': include != true}"
+                    (click)="flipInclude()">Include Task</button></label>
     <span *ngIf="include">
         {{todo.name}}
         <span *ngIf="todo.projects[0]"> + Link to Task</span>
