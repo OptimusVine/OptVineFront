@@ -1,4 +1,17 @@
-<span>{{work | json }}</span>
+
 <div>
-    <todo-list [todos]="work.todos" (selectTodo)="onSelect($event)"></todo-list>
+    <h2>
+    {{work.title}} <button class="small" (click)=onComplete()>DONE!</button>
+    </h2><br>
+    Stage: {{work.status?.stage}}<br>
+    Description: {{work.description}}<br><br>
+</div>
+<div *ngIf="work.todos[0]">
+    <todo-list [todos]="work.todos " 
+    (selectTodo)="onSelectTodo($event)"
+    (markComplete)="completeTodo($event)"
+    ></todo-list>
+</div>
+<div *ngIf="work.items[0]">
+    <item-list [items]="work.items" (selectItem)="onSelectItem($event)"></item-list>
 </div>

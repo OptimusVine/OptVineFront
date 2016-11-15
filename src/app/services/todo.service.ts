@@ -31,7 +31,6 @@ export class TodoService {
         }, error => console.log('Could not load todos.'));
     }
 
-
     public completeTodo(todo: string){
         let completeUrl = `http://localhost:5000/todos/` + todo + `/complete`
         console.log(completeUrl)

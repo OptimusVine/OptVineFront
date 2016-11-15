@@ -1,25 +1,26 @@
-ITEM DETAIL COMPONENT
 
 Basic item Details:
 <div *ngIf="item">
-    Description: {{item.description}} <br>
-    Link: {{item.uri}} <br>
-    Created: {{item.plmItem.details?.timeStamp | date: 'MM/dd/yyyy'}} <br>
-    Last Modified: {{item.plmItem.details?.lastModified | date: 'hh:mm MM/dd/yyyy' }} <br>
-    Workflow Step: {{item.plmItem.details?.workflowState.stateName}}<br>
+    <label>Description:</label> {{item.description}} <br>
+        <span>
+            <button *ngIf="changing"  (click)="pushChange()">Set </button>
+            <input style="width=5em" *ngIf="changing" [(ngModel)]="newRank"/>
+        </span><br>
+    <label>Link: </label> <a target="_blank" href="https://clubw.autodeskplm360.net/workspace#workspaceid={{item.plmItem.details.workspaceID}}&dmsid={{item.plmItem.id}}&tab=itemdetails"  ><button>TO PLM!</button></a><br>
+    <label>Created:</label> {{item.plmItem.details?.timeStamp | date: 'MM/dd/yyyy'}} <br>
+    <label>Last Modified:</label> {{item.plmItem.details?.lastModified | date: 'hh:mm MM/dd/yyyy' }} <br>
+    <label (click)="requestChange()" >Workflow Step:</label> 
+        {{item.plmItem.details?.workflowState.stateName}} : {{item.rank}}
+    <br>
     <button (click)="showFields()">See Fields</button>
-    
-<div *ngIf="item">
-    {{item.plmItem.relations?.entry | json }}
-<div>
 
 </div>
 
 <ul *ngIf="showingFields">
-    <li *ngFor="let item of item?.plmItem.metaFields.entry">
+    <li *ngFor="let item of item?.plmItem.metaFields.entry | orderBy:['key']">
         {{item.key}} : 
                 <span *ngIf="item.fieldData.label">{{item.fieldData.label}}</span>
                 <span *ngIf="!item.fieldData.label">{{item.fieldData.value}}</span>
+                
     </li>
 </ul>
-

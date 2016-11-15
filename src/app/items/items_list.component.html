@@ -1,8 +1,24 @@
 <div *ngIf="items">
+    <div> Filter Type
+        <select class="form-control" [(ngModel)]="filterargs.type" (ngModelChange)="setFilter()" >
+            <option [ngValue]="">  </option>
+            <option *ngFor="let type of types" [ngValue]="type" >{{type}}</option>
+        </select>
+    </div>
+
+
+
+
     <table>
-        <tr *ngFor="let item of items" (click)="onSelect(item)" >
+        <tr>
+            <th>TYPE</th>
+            <th>DESCRIPTION</th>
+            <th>STATE</th>
+        </tr>
+        <tr *ngFor="let item of items | filter:filterargs | orderBy:['rank']" (click)="onSelect(item)" >
             <td>{{item.type}}</td>
             <td>{{item.description}}</td>
+            <td>{{item.plmItem.details?.workflowState.stateName}}</td>
         </tr>
     </table>
     

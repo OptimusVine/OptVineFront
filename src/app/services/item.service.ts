@@ -27,6 +27,16 @@ export class ItemService {
         return this._item$.asObservable();
     }
 
+public changeRank(item:any, r:string){
+         let body = {rank:r}
+        console.log(body)
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.put(`${baseUrl}/items/${item._id}/changeRank`, body)
+        .map(this.extractData)
+        .catch(this.handleError)    
+}
+
     // requestProcess(p:any){
     //     this.http.get(`${baseUrl}/processes/${p._id}`).map(response => response.json()).subscribe(data => {
     //         this.dataStore.items = data;

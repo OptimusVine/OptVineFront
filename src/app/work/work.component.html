@@ -1,41 +1,79 @@
-This page will show all WORK <br>
-We will work on making this work filter down, but first show it all.
-<br><br><br>
+<table>
+    <tr>
+        <td *ngFor="let type of types">{{type}} : </td>
+    </tr>
+</table>
 
-<button (click)=postWork()> Add New Work  </button>
+    <div>
+        <input [(ngModel)]="newTitle"  />
+        <button (click)=postWork()> Add New Work  </button>
+    </div>
+
+<div class="workbody">
+    <div class="leftbar">
+        <div *ngIf="_work$">
+            <span *ngIf="!_work$[0]"> There is currently NO work </span>
+            <table> 
+                <tr>
+                    <th><h3 (click)="refreshWork()">WORK</h3></th>
+                </tr>
+                <tr *ngFor="let work of _work$" (click)="onSelect(work)">
+                    <td [ngClass]="{'color-green-text': work.status.complete}">{{work.title}}</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="lefty">
+        <div *ngIf="selectedWork" >
+            <work-detail [work]="selectedWork" 
+                (selectTodo)="selectTodo($event)" 
+                (selectItem)="selectItem($event)" 
+                (completeWork)="completeWork()"
+            ></work-detail>
+        </div>  
+
+    
+    </div>
+
+    <div class="righty">
+
+        <div *ngIf="selectedItem && listItems">
+            <button (click)=addItemToWork()> Add Item To Work  </button><br>
+            <item-detail [item]="selectedItem" (rankChange)="changeItemRank($event)" ></item-detail>
+        </div>
+
+        <div *ngIf="selectedTodo && listTodos">
+            <button (click)=addTodoToWork()> Add Todo To Work  </button><br>
+            <todo-detail [todo]="selectedTodo" (markComplete)="completeTodo()"></todo-detail>
+        </div>
+
+        <div>
+            <span>
+                <button (click)="showTodos()" >Show Todos</button>
+                <button (click)="showItems()" >Show Items</button>
+            </span>
+
+            <div *ngIf="listItems _item$">
+                <item-list [items]="_item$" [types]="types"  (selectItem)="selectItem($event)"></item-list>
+            </div>
+
+            <div *ngIf="listTodos && _todo$">
+                <todo-list [todos]="_todo$" (selectTodo)="selectTodo($event)"></todo-list>
+            </div>
+
+        </div>
+
+    </div>
+
+<div>
 
 
-<div *ngIf="selectedWork">
-    <work-detail [work]="selectedWork" (selectTodo)="selectTodo($event)" ></work-detail>
-</div>
-<button (click)=addTodoToWork()> Add Todo To Work  </button>
-<div *ngIf="selectedTodo">
-    <todo-detail [todo]="selectedTodo" ></todo-detail>
-</div>
-
-<div *ngIf="selectedItem">
-    <item-detail [item]="selectedItem"></item-detail>
-</div>
 
 
-<button (click)="showTodos()" >Show Todos</button>
-<div *ngIf="listTodos ">
-    <todo-list [todos]="_todo$" (selectTodo)="selectTodo($event)"></todo-list>
-</div>
 
 
-<div *ngIf="_item$">
-    <item-list [items]="_item$" (selectItem)="selectItem($event)"></item-list>
-</div>
 
-<div *ngIf="_work$">
-     <span *ngIf="!_work$[0]"> There is currently NO work </span>
-    <table> 
-        <tr>
-            <th>TITLE</th>
-        </tr>
-        <tr *ngFor="let work of _work$" (click)="onSelect(work)">
-            <td>{{work.title}}</td></tr>
-    </table>
-</div>
+
+
+
 

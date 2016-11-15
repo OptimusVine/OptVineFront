@@ -1,14 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
 
+body {
+    font-family: Arial;
+}
+
 .color-green {
   background-color: palegreen;
+
+}
+
+.color-green-text {
+  color: lawngreen;
 }
 
 .color-red {
  background-color: palevioletred
 }
 
+.workbody {
+  background-color: dimgrey
+}
+
+.leftbar {
+    width: 10%;
+    
+    float: left;
+    word-wrap: normal;
+    position: relative;
+    background-color: #2b506e;
+    color: #E1E2E4;
+    height: 100vmax;
+}
+
+.leftbar tr:nth-child(even) {
+    background-color: #2b506e;
+    color: #E1E2E4;
+}
+
+.leftbar tr:hover {
+  background-color: lightblue;
+  color: black;
+  }
+
+.lefty {
+    width: 41%;
+    height: 3000px;
+    float: left;
+    font-family: Arial;
+    padding: 10px;
+    margin-left: 1%;
+    word-wrap: break-word;
+    position: relative;
+    background-color: white;
+    border: 10px; border-color: 2b506e; border-style: solid;
+    font-size: 1vw;
+}
+.righty {
+    width: 41%;
+    height: 3000px;
+    padding: 10px;
+    float: right;
+    font-family: Arial;
+    background-color: white;
+    border: 10px; border-color: 2b506e; border-style: solid;
+    font-size: 1vw;
+    word-wrap: break-word;
+    position: relative;
+}
+
+.lefty table {
+  width: 100%
+}
+
+.righty table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th,td {
+    word-wrap: break-word;
+}
+
+th.smallCell {
+  width: 1px;
+  white-space: nowrap
+}
+
+td.smallCell {
+  width: 1px;
+  white-space: nowrap
+}
 
 label {
   display: inline-block;
@@ -31,6 +113,10 @@ button {
   border: none;
   cursor: pointer; cursor: hand;
 }
+button.small {
+  width: 5em;
+}
+
 button:hover {
   background-color: #cfd8dc;
 }

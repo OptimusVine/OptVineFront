@@ -1,0 +1,36 @@
+<table class="todos">
+    <tr>
+        <th class="assignee">Assignee</th>
+        <th class="name">Name</th>
+        <th class="due-date">Due Date</th>
+        <th style="width: 4em">Status</th>
+        <th class="wines">Project</th>
+        <th style="width: 4em">Asana</th>
+    </tr>
+    <tr *ngFor="let todo of todos | orderBy : ['dateDue']" (click)="onSelect(todo)">
+        <td> 
+            <span *ngIf="todo.asana_assignee">{{todo.asana_assignee.name}}</span>
+            <span *ngIf="todo.asana_assignee == null || todo.asana_assignee.id == null">Not Assigned</span> 
+            
+        </td>
+        <td [ngClass]="{'color-red': todo.action}">
+            {{todo.name}}
+        </td>
+        <td>
+             <span *ngIf="todo.dateDue">{{todo.dateDue | date: 'dd/MM/yyyy'}}</span>
+        </td>
+        <td class="smallCell">
+             <span [ngClass]="{'color-green': todo.complete}" >{{todo.complete}}</span>
+        </td>
+        <td>
+             <span *ngIf="todo.projects && todo.projects[0]">{{todo.projects[0].name}}</span>
+        </td>
+        <td><span *ngIf="todo.projects">     
+            <span *ngIf="todo.projects[0]"><a target="_blank" 
+                        href="https://app.asana.com/0/{{todo.projects[0].id}}/{{todo.asana_id}}"><button class="small">GO</button></a></span>
+            <span *ngIf="!todo.projects[0]"><a target="_blank" 
+                        href="https://app.asana.com/0/3/{{todo.asana_id}}"><button class="small">GO</button></a></span>        
+                
+        </span></td>
+    </tr>
+</table>

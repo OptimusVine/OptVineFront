@@ -14,12 +14,27 @@ import { TodoFilterPipe } from '../pipes/todo-filter.pipe'
 export class TodoListComponent implements OnInit {
     public myTodos: Todo[];
     public selectedTodo: Todo;
-    public showingMine: boolean = false
-    public me: number
-    public me2 = 10363492364586;
+    
+    public me
 
-    showMine(): void {
-        this.showingMine = !this.showingMine
+    showComplete: boolean = true
+    public showMine: boolean = false
+
+    private filterargs = {
+        complete: false,
+        asana_assignee: { name : "Kjiel Carlson", id : 10363492364586 }
+    }
+
+
+
+    filterMine(): void {
+        if('asana_assignee' in this.filterargs){
+            delete this.filterargs.asana_assignee
+            this.showMine = false
+        } else {
+            this.filterargs.asana_assignee = { name : "Kjiel Carlson", id : 10363492364586 }
+            this.showMine = true
+        }
     }
 
     @Input() todos: Todo[];
@@ -30,8 +45,18 @@ export class TodoListComponent implements OnInit {
     ) { }
 
     ngOnInit() { 
-        this.getTodos();
-        this.me = 10363492364586
+        this.me = { "name" : "Kjiel Carlson", "id" : 10363492364586 }
+    }
+
+
+    filterComplete(): void {
+        if('complete' in this.filterargs){
+            delete this.filterargs.complete
+            this.showComplete = false
+        } else {
+            this.filterargs.complete = false
+            this.showComplete = true
+        }
     }
 
     onSelect(todo: Todo): void {

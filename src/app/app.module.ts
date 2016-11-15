@@ -20,6 +20,7 @@ import { ProcessesFlowComponent } from './processes/processes_flow.component'
 import { TodosComponent } from './todos/todos.component'
 import { TodoDetailComponent } from './todos/todo_detail/todo_detail.component'
 import { TodoListComponent } from './todos/todo_list.component'
+import { TodoTableComponent } from './todos/todo_table.component'
 import { UserDropdownComponent } from './users/user_dropdown.component'
 import { WineDetailComponent } from './wines/wine_detail.component'
 import { WineDropdownComponent } from './wines/wine_dropdown.component'
@@ -28,6 +29,7 @@ import { WorkComponent } from './work/work.component'
 import { WorkDetailComponent } from './work/work_detail.component'
 
 import { TodoFilterPipe } from './pipes/todo-filter.pipe'
+import { FilterPipe } from './pipes/filter.pipe'
 import { OrderByPipe } from './pipes/orderBy.pipe'
 
 import { AuthGuard } from './_guards/auth.guard'
@@ -69,6 +71,7 @@ import { AuthenticatedRequest } from './shared/jwt-request';
     TodosComponent,
     TodoListComponent,
     TodoDetailComponent,
+    TodoTableComponent,
     UserDropdownComponent,
     WineDetailComponent,
     WineDropdownComponent,
@@ -77,7 +80,8 @@ import { AuthenticatedRequest } from './shared/jwt-request';
     WorkDetailComponent,
     // PIPES
     TodoFilterPipe,
-    OrderByPipe
+    OrderByPipe,
+    FilterPipe,
   ],
   providers: [
     // GUARDS
